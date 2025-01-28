@@ -1,10 +1,10 @@
 import { Text } from "@sf-digital-ui/react-native";
 import { StyleSheet, View } from "react-native";
 
-export default function Signup() {
+export default function Profile() {
   return (
     <View style={styles.container}>
-      <Text>Signup</Text>
+      <Text>Profile</Text>
     </View>
   );
 }

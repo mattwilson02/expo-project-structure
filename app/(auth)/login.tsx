@@ -35,7 +35,7 @@ export default function Login() {
   const handleSubmit = () => {
     console.log(email, password);
     // TODO: go to profile
-    router.push("/(auth)/signup");
+    router.replace("/");
   };
 
   const goToSignUp = () => {
