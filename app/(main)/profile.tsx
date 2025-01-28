@@ -1,4 +1,5 @@
 import { Text } from "@sf-digital-ui/react-native";
+import { Link } from "expo-router";
 import { StyleSheet, View } from "react-native";
 
 export default function Profile() {

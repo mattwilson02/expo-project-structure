@@ -5,6 +5,7 @@ import { colors } from "@sf-digital-ui/tokens";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { z } from "zod";
 
 // Types and Interfaces, and Zod Schemas
@@ -43,7 +44,7 @@ export default function Login() {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="name@email.com"
@@ -73,7 +74,7 @@ export default function Login() {
           <Button.Text>Sign In</Button.Text>
         </Button.Root>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
