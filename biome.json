@@ -25,7 +25,7 @@
 					"fix": "none"
 				},
 				"noConsoleLog": {
-					"level": "warn",
+					"level": "error",
 					"fix": "none"
 				},
 				"noArrayIndexKey": "off"
@@ -35,11 +35,11 @@
 			},
 			"correctness": {
 				"noUnusedImports": {
-					"level": "warn",
+					"level": "error",
 					"fix": "none"
 				},
 				"noUnusedVariables": {
-					"level": "warn",
+					"level": "error",
 					"fix": "none"
 				},
 				"noChildrenProp": "off"
