@@ -1,5 +1,6 @@
 import { Redirect } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Main() {
   const isAuthenticated = false;
@@ -8,9 +9,9 @@ export default function Main() {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text>Main Page</Text>
-    </View>
+    </SafeAreaView>
   );
 }
 

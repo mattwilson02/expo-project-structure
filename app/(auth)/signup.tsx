@@ -1,11 +1,12 @@
 import { Text } from "@sf-digital-ui/react-native";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Signup() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text>Signup</Text>
-    </View>
+    </SafeAreaView>
   );
 }
 

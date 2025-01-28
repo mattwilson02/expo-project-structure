@@ -53,7 +53,6 @@ export default function Login() {
         />
         <TextInput
           placeholder="**********"
-          secureTextEntry
           onChangeText={setPassword}
           //   ref={passwordInputRef}
         />
@@ -85,6 +84,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 16,
+    backgroundColor: "white",
   },
   inputContainer: {
     maxWidth: 280,
