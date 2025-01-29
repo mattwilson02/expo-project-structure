@@ -1,4 +1,3 @@
-// utils/test-utils.tsx
 import { render } from '@testing-library/react-native'
 import {
 	ThemeProvider,
