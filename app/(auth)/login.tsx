@@ -34,15 +34,11 @@ export default function Login() {
 
 	// Functions and logic
 	const handleSubmit = () => {
-		router.replace({
-			pathname: '/',
-		})
+		router.replace('/')
 	}
 
 	const goToSignUp = () => {
-		router.push({
-			pathname: '/(auth)/signup',
-		})
+		router.push('/(auth)/signup')
 	}
 
 	return (

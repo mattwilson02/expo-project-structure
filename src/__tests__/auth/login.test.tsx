@@ -1,7 +1,5 @@
-import { render, fireEvent } from '@/utils/test-utils'
-// import { renderRouter, screen } from 'expo-router/testing-library'
+import { render, fireEvent, waitFor } from '@/utils/test-utils'
 import Login from '@/app/(auth)/login'
-// import Signup from '@/app/(auth)/signup'
 
 jest.mock('@sf-digital-ui/react-native', () => ({
 	Button: {
@@ -53,6 +51,19 @@ jest.mock('@expo/vector-icons', () => ({
 }))
 
 describe('Login Component', () => {
+	const mockRouter = {
+		push: jest.fn(),
+		replace: jest.fn(),
+	}
+
+	beforeEach(() => {
+		jest.clearAllMocks()
+
+		jest
+			.spyOn(require('expo-router'), 'useRouter')
+			.mockImplementation(() => mockRouter)
+	})
+
 	it('renders correctly with initial empty form', () => {
 		const { getByPlaceholderText, getAllByTestId } = render(<Login />)
 
@@ -86,21 +97,30 @@ describe('Login Component', () => {
 		expect(signInButton).toBeDisabled()
 	})
 
-	// it('navigates to signup page when "Sign Up Instead" is pressed', () => {
-	// 	renderRouter(
-	// 		{
-	// 			'(auth)/signup': Signup,
-	// 			'(auth)/login': Login,
-	// 		},
-	// 		{
-	// 			initialUrl: '/(auth)/login',
-	// 		},
-	// 	)
+	it('navigates to signup page when "Sign Up Instead" button is pressed', async () => {
+		const { getAllByTestId } = render(<Login />)
 
-	// 	expect(screen).toHavePathname('/login')
+		const buttons = getAllByTestId('button')
+		fireEvent.press(buttons[0])
 
-	// 	fireEvent.press(screen.getAllByTestId('button')[0])
+		await waitFor(() => {
+			expect(mockRouter.push).toHaveBeenCalledWith('/(auth)/signup')
+		})
+	})
 
-	// 	expect(screen).toHavePathname('/signup')
-	// })
+	it('handles successful login submission', () => {
+		const { getByPlaceholderText, getAllByTestId } = render(<Login />)
+
+		fireEvent.changeText(
+			getByPlaceholderText('name@email.com'),
+			'test@example.com',
+		)
+		fireEvent.changeText(getByPlaceholderText('**********'), 'password123')
+
+		const buttons = getAllByTestId('button')
+		const signInButton = buttons[1]
+		fireEvent.press(signInButton)
+
+		expect(mockRouter.replace).toHaveBeenCalledWith('/')
+	})
 })
