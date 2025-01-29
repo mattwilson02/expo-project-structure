@@ -6,19 +6,19 @@ import { useRouter } from 'expo-router'
 import { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { z } from 'zod'
+// import { z } from 'zod'
 
 // Types and Interfaces, and Zod Schemas
 
-type LoginProps = {
-	email: string
-	password: string
-}
+// type LoginProps = {
+// 	email: string
+// 	password: string
+// }
 
-const loginSchema = z.object({
-	email: z.string().email(),
-	password: z.string().min(8),
-})
+// const loginSchema = z.object({
+// 	email: z.string().email(),
+// 	password: z.string().min(8),
+// })
 
 export default function Login() {
 	// Hooks
@@ -34,8 +34,6 @@ export default function Login() {
 
 	// Functions and logic
 	const handleSubmit = () => {
-		console.log(email, password)
-		// TODO: go to profile
 		router.replace('/')
 	}
 
