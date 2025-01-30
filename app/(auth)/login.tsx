@@ -1,6 +1,6 @@
 // Imports
 import { AntDesign } from '@expo/vector-icons'
-import { Button, TextInput } from '@sf-digital-ui/react-native'
+import { Button, Heading, TextInput } from '@sf-digital-ui/react-native'
 import { colors } from '@sf-digital-ui/tokens'
 import { useRouter } from 'expo-router'
 import { useState } from 'react'
@@ -44,12 +44,15 @@ export default function Login() {
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.inputContainer}>
+				<Heading testID='sign-in-heading'>Sign In</Heading>
 				<TextInput
+					testID='email-input'
 					placeholder='name@email.com'
 					onChangeText={setEmail}
 					//   onSubmitEditing={(e) => passwordInputRef.current?.focus()}
 				/>
 				<TextInput
+					testID='password-input'
 					placeholder='**********'
 					onChangeText={setPassword}
 					//   ref={passwordInputRef}
@@ -67,7 +70,12 @@ export default function Login() {
 					</Button.Text>
 					<Button.Text>Sign Up Instead</Button.Text>
 				</Button.Root>
-				<Button.Root disabled={!isValid} size='sm' onPress={handleSubmit}>
+				<Button.Root
+					testID='sign-in-button'
+					disabled={!isValid}
+					size='sm'
+					onPress={handleSubmit}
+				>
 					<Button.Text>Sign In</Button.Text>
 				</Button.Root>
 			</View>
