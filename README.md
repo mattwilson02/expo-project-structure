@@ -1,50 +1,15 @@
-# Welcome to your Expo app 👋
+# Expo Project Structure 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is an [Expo](https://expo.dev) that I have built in a phase of discovery, in order to establish an optimal developer workflow, when working with Native apps.
 
-## Get started
+## Implementations
 
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+1. [Expo Router](https://docs.expo.dev/router/introduction)
+   - Used a grouping structure to organise stacks
+   - Create a `Stack` on the **app** level and then nested `Stacks` for each group
+2. [Biome Linter](https://biomejs.dev/)
+   - Basic rules available at `biome.json`
+   - Implemented **pre-commit checks**, using [Lefthook](https://biomejs.dev/recipes/git-hooks/#lefthook)
+3. [Unit Testing w/ @testing-library/react-native](https://testing-library.com/docs/react-native-testing-library/intro/)
+4. [E2E Testing w/ maestro](https://docs.expo.dev/build-reference/e2e-tests/)
+5. **File Structure**: example component structure, with *imports, hooks, logic, functions, return JSX, and styling
