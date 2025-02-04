@@ -1,17 +1,49 @@
-import { Redirect } from 'expo-router'
-import { StyleSheet, Text } from 'react-native'
+// import { Redirect } from 'expo-router'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { api } from '../../src/services/api'
+import { useQuery } from '@tanstack/react-query'
+import { Button, Heading } from '@sf-digital-ui/react-native'
+import { useRouter } from 'expo-router'
 
 export default function Main() {
-	const isAuthenticated = false
-	if (!isAuthenticated) {
-		return <Redirect href='/(auth)/login' />
+	const router = useRouter()
+
+	const { data: users, isFetching } = useQuery({
+		queryKey: ['users'],
+		queryFn: async () => {
+			const response = await api.get('/users')
+			return response.data
+		},
+	})
+
+	if (isFetching) {
+		return <Text style={styles.container}>Loading...</Text>
 	}
 
 	return (
-		<SafeAreaView style={styles.container}>
-			<Text>Main Page</Text>
-		</SafeAreaView>
+		<ScrollView>
+			<SafeAreaView style={styles.container}>
+				<Heading>Users</Heading>
+				<View style={{ gap: 8, alignItems: 'center' }}>
+					{users.map(
+						(user: {
+							id: string
+							email: string
+							password: string
+						}) => (
+							<Text key={user.id}>
+								{user.email} - {user.password}
+							</Text>
+						),
+					)}
+				</View>
+
+				<Button.Root onPress={() => router.replace('/(auth)/login')}>
+					<Button.Text>Logout</Button.Text>
+				</Button.Root>
+			</SafeAreaView>
+		</ScrollView>
 	)
 }
 
@@ -20,5 +52,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
+		gap: 16,
 	},
 })

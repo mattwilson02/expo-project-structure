@@ -1,11 +1,13 @@
 // Imports
 import { AntDesign } from '@expo/vector-icons'
-import { Button, Heading, TextInput } from '@sf-digital-ui/react-native'
+import { Button, TextInput } from '@sf-digital-ui/react-native'
 import { colors } from '@sf-digital-ui/tokens'
 import { useRouter } from 'expo-router'
 import { useState } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { api } from '../../src/services/api'
+import { useMutation } from '@tanstack/react-query'
 // import { z } from 'zod'
 
 // Types and Interfaces, and Zod Schemas
@@ -26,6 +28,18 @@ export default function Login() {
 	const [password, setPassword] = useState('')
 	const router = useRouter()
 
+	const { mutateAsync, isPending } = useMutation({
+		mutationKey: ['login'],
+		mutationFn: async () => {
+			const response = await api.post('/login', {
+				email,
+				password,
+			})
+
+			return response.data
+		},
+	})
+
 	// TODO: add refs once design system is updated
 	//   const passwordInputRef = useRef<RNTextInput>(null);
 
@@ -33,7 +47,8 @@ export default function Login() {
 	const isValid = email !== '' && password !== ''
 
 	// Functions and logic
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
+		await mutateAsync()
 		router.replace('/')
 	}
 
@@ -44,7 +59,7 @@ export default function Login() {
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.inputContainer}>
-				<Heading testID='sign-in-heading'>Sign In</Heading>
+				{/* <Heading testID='sign-in-heading'>Sign In</Heading> */}
 				<TextInput
 					testID='email-input'
 					placeholder='name@email.com'
@@ -60,7 +75,12 @@ export default function Login() {
 			</View>
 
 			<View style={styles.buttonContainer}>
-				<Button.Root onPress={goToSignUp} size='sm' variant='secondary'>
+				<Button.Root
+					onPress={goToSignUp}
+					disabled={isPending}
+					size='sm'
+					variant='secondary'
+				>
 					<Button.Text>
 						<AntDesign
 							name='arrowleft'
@@ -72,7 +92,7 @@ export default function Login() {
 				</Button.Root>
 				<Button.Root
 					testID='sign-in-button'
-					disabled={!isValid}
+					disabled={!isValid || isPending}
 					size='sm'
 					onPress={handleSubmit}
 				>

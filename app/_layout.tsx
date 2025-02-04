@@ -9,6 +9,7 @@ import * as SplashScreen from 'expo-splash-screen'
 import { StatusBar } from 'expo-status-bar'
 import { useEffect } from 'react'
 import 'react-native-reanimated'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { useColorScheme } from '@/hooks/useColorScheme'
 
@@ -16,6 +17,7 @@ import { useColorScheme } from '@/hooks/useColorScheme'
 SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
+	const queryClient = new QueryClient()
 	const colorScheme = useColorScheme()
 	const [loaded] = useFonts({
 		SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
@@ -32,14 +34,19 @@ export default function RootLayout() {
 	}
 
 	return (
-		<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-			<Stack>
-				<Stack.Screen name='(auth)' options={{ headerShown: false }} />
-				<Stack.Screen name='(main)' options={{ headerShown: false }} />
-				<Stack.Screen name='(transactions)' options={{ headerShown: false }} />
-				<Stack.Screen name='+not-found' />
-			</Stack>
-			<StatusBar style='auto' />
-		</ThemeProvider>
+		<QueryClientProvider client={queryClient}>
+			<ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+				<Stack>
+					<Stack.Screen name='(auth)' options={{ headerShown: false }} />
+					<Stack.Screen name='(main)' options={{ headerShown: false }} />
+					<Stack.Screen
+						name='(transactions)'
+						options={{ headerShown: false }}
+					/>
+					<Stack.Screen name='+not-found' />
+				</Stack>
+				<StatusBar style='auto' />
+			</ThemeProvider>
+		</QueryClientProvider>
 	)
 }

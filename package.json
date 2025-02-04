@@ -12,7 +12,8 @@
 		"test:coverage": "jest --coverage",
 		"test:e2e": "maestro test src/__tests__/e2e/login.yaml src/__tests__/e2e/dashboard.yaml",
 		"lint": "npx @biomejs/biome check ./app ./src",
-		"format": "npx @biomejs/biome format --write ."
+		"format": "npx @biomejs/biome format --write .",
+		"json-server": "json-server ./src/db.json — watch — port 3000"
 	},
 	"dependencies": {
 		"@expo/vector-icons": "^14.0.2",
@@ -20,6 +21,8 @@
 		"@react-navigation/native": "^7.0.14",
 		"@sf-digital-ui/react-native": "^2.0.0",
 		"@sf-digital-ui/tokens": "^3.3.4",
+		"@tanstack/react-query": "^5.66.0",
+		"axios": "^1.7.9",
 		"expo": "~52.0.28",
 		"expo-blur": "~14.0.3",
 		"expo-constants": "~17.0.5",
@@ -32,6 +35,7 @@
 		"expo-symbols": "~0.2.1",
 		"expo-system-ui": "~4.0.7",
 		"expo-web-browser": "~14.0.2",
+		"json-server": "^1.0.0-beta.3",
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
 		"react-native": "0.76.6",
