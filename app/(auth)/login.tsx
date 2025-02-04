@@ -1,6 +1,6 @@
 // Imports
 import { AntDesign } from '@expo/vector-icons'
-import { Button, Heading, TextInput } from '@sf-digital-ui/react-native'
+import { Button, TextInput } from '@sf-digital-ui/react-native'
 import { colors } from '@sf-digital-ui/tokens'
 import { useRouter } from 'expo-router'
 import { useState } from 'react'
@@ -31,7 +31,7 @@ export default function Login() {
 	const { mutateAsync, isPending } = useMutation({
 		mutationKey: ['login'],
 		mutationFn: async () => {
-			const response = await api.post('/users', {
+			const response = await api.post('/login', {
 				email,
 				password,
 			})
@@ -59,7 +59,7 @@ export default function Login() {
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.inputContainer}>
-				<Heading testID='sign-in-heading'>Sign In</Heading>
+				{/* <Heading testID='sign-in-heading'>Sign In</Heading> */}
 				<TextInput
 					testID='email-input'
 					placeholder='name@email.com'

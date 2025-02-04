@@ -13,5 +13,6 @@ module.exports = {
 		'^@/utils/(.*)$': '<rootDir>/src/utils/$1',
 		'^@/app/(.*)$': '<rootDir>/app/$1',
 		'^@/assets/(.*)$': '<rootDir>/assets/$1',
+		'^@/services/(.*)$': '<rootDir>/src/services/$1',
 	},
 }

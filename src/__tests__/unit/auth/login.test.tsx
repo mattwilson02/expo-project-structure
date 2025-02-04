@@ -108,7 +108,7 @@ describe('Login Component', () => {
 		})
 	})
 
-	it('handles successful login submission', () => {
+	it('handles successful login submission', async () => {
 		const { getByPlaceholderText, getAllByTestId } = render(<Login />)
 
 		fireEvent.changeText(
@@ -121,6 +121,8 @@ describe('Login Component', () => {
 		const signInButton = buttons[1]
 		fireEvent.press(signInButton)
 
-		expect(mockRouter.replace).toHaveBeenCalledWith('/')
+		await waitFor(() => {
+			expect(mockRouter.replace).toHaveBeenCalledWith('/')
+		})
 	})
 })

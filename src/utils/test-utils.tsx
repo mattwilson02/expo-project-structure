@@ -4,8 +4,21 @@ import {
 	DefaultTheme,
 	DarkTheme,
 } from '@react-navigation/native'
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { ReactNode } from 'react'
+
+jest.mock('@tanstack/react-query', () => ({
+	useMutation: jest.fn(() => ({
+		mutateAsync: jest.fn(),
+		isPending: false,
+	})),
+	useQuery: jest.fn(() => ({
+		data: [],
+		isFetching: false,
+	})),
+	QueryClient: jest.fn(),
+	QueryClientProvider: jest.fn(({ children }) => children),
+}))
 
 jest.mock('expo-router', () => ({
 	Stack: {
@@ -38,11 +51,18 @@ interface CustomRenderOptions {
 const AllTheProviders = ({
 	children,
 	theme = 'light',
-}: { children: ReactNode; theme?: 'light' | 'dark' }) => {
+}: {
+	children: ReactNode
+	theme?: 'light' | 'dark'
+}) => {
+	const queryClient = new QueryClient()
+
 	return (
-		<ThemeProvider value={theme === 'dark' ? DarkTheme : DefaultTheme}>
-			{children}
-		</ThemeProvider>
+		<QueryClientProvider client={queryClient}>
+			<ThemeProvider value={theme === 'dark' ? DarkTheme : DefaultTheme}>
+				{children}
+			</ThemeProvider>
+		</QueryClientProvider>
 	)
 }
 
