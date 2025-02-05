@@ -5,9 +5,11 @@ import { api } from '../../src/services/api'
 import { useQuery } from '@tanstack/react-query'
 import { Button, Heading } from '@sf-digital-ui/react-native'
 import { useRouter } from 'expo-router'
+import { useTranslation } from 'react-i18next'
 
 export default function Main() {
 	const router = useRouter()
+	const { t } = useTranslation()
 
 	const { data: users, isFetching } = useQuery({
 		queryKey: ['users'],
@@ -42,6 +44,7 @@ export default function Main() {
 				<Button.Root onPress={() => router.replace('/(auth)/login')}>
 					<Button.Text>Logout</Button.Text>
 				</Button.Root>
+				<Text>{t('hello_world')}</Text>
 			</SafeAreaView>
 		</ScrollView>
 	)

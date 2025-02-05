@@ -12,10 +12,10 @@ import 'react-native-reanimated'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 import { useColorScheme } from '@/hooks/useColorScheme'
+import '../src/i18n'
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync()
-
 export default function RootLayout() {
 	const queryClient = new QueryClient()
 	const colorScheme = useColorScheme()

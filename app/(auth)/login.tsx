@@ -29,9 +29,9 @@ export default function Login() {
 	const router = useRouter()
 
 	const { mutateAsync, isPending } = useMutation({
-		mutationKey: ['login'],
+		mutationKey: ['users'],
 		mutationFn: async () => {
-			const response = await api.post('/login', {
+			const response = await api.post('/users', {
 				email,
 				password,
 			})
