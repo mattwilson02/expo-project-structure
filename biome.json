@@ -24,6 +24,8 @@
 					"level": "error",
 					"fix": "none"
 				},
+				"noExplicitAny": "error",
+				"noEmptyInterface": "error",
 				"noConsoleLog": {
 					"level": "error",
 					"fix": "none"
