@@ -14,3 +14,5 @@ This is an [Expo](https://expo.dev) that I have built in a phase of discovery, i
 4. [E2E Testing w/ maestro](https://docs.expo.dev/build-reference/e2e-tests/)
 5. **File Structure**: example component structure, with *imports, hooks, logic, functions, return JSX, and styling
 6. [i18Next](https://react.i18next.com/)
+6. [JSON Server Mocking](https://github.com/typicode/json-server/tree/v0)
+7. Custom **Pull Request** template
